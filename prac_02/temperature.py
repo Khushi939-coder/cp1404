@@ -24,5 +24,31 @@ Program for temperature conversion
 # print("Thank you.")
 
 MENU = "C - Convert Celsius to Fahrenheit\nF - Convert Fahrenheit to Celsius\nQ - Quit"""
-
 print(MENU)
+
+def main():
+    """Main function to handle menu and conversions"""
+    choice = input(">>> ").upper()
+    while choice != "Q":
+        if choice == "C":
+            celsius = float(input("Enter temperature in Celsius: "))
+            print(f"Temperature: {convert_to_fahrenheit(celsius):.2f} F")
+        elif choice == "F":
+            fahrenheit = float(input("Enter temperature in Fahrenheit: "))
+            print(f"Temperature: {convert_to_celsius(fahrenheit):.2f} C")
+        else:
+            print("Invalid input")
+
+        print(MENU)
+        choice = input(">>> ").upper()
+
+def convert_to_fahrenheit(celsius):
+    """Convert user input into Fahrenheit"""
+    return celsius * 9.0 / 5 + 32
+
+def convert_to_celsius(fahrenheit):
+    """Convert user input into Celsius"""
+    return 5 / 9 * (fahrenheit - 32)
+
+
+main()
