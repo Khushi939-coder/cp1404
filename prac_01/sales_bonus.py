@@ -6,9 +6,12 @@ If sales are $1,000 or over, the bonus is 15%.
 
 sale = float(input("Enter the sale: "))
 
-if sale < 1000:
-    bonus = sale * 0.10
-else:
-    bonus = sale * 0.15
+while sale >= 0:
+    if sale < 1000:
+        bonus = sale * 0.10
+    else:
+        bonus = sale * 0.15
+    print(f"User bonus is ${bonus:.2f}")
+    sale = float(input("Enter the sale: "))
 
-print(f"You get a bonus of ${bonus:.2f}")
+print("Thank you!")
