@@ -4,4 +4,4 @@ import random
 # print(random.randrange(3, 10, 2))  # line 2
 # print(random.uniform(2.5, 5.5))
 
-print(random.randint(1, 101))# line 3
+print(random.randint(1, 100))# line 3
