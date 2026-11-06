@@ -10,6 +10,10 @@ class Guitar:
     def __str__(self):
         return f"{self.name} ({self.year}) : ${self.cost:,.2f}"
 
+    def __lt__(self, other):
+        """Compare guitars by year for sorting"""
+        return self.year < other.year
+
     def get_age(self):
         return datetime.datetime.now().year - self.year
 
