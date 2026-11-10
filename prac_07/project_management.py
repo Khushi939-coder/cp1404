@@ -54,8 +54,33 @@ def save_projects(projects, filename="projects.txt"):
     except Exception as e:
         print(f"Error saving project: {e}")
 
-def display_projects():
-    pass
+def display_projects(projects):
+    completed = []
+    incomplete = []
+
+    # Step 1: Split projects into two groups
+    for p in projects:
+        if p.completion_percentage == 100:
+            completed.append(p)
+        else:
+            incomplete.append(p)
+
+    # Step 2: Sort both lists (uses the __lt__ method)
+    completed.sort()
+    incomplete.sort()
+
+    # Step 3: Print them
+    print("\n--- Incomplete Projects ---")
+    for p in incomplete:
+        print(p)
+
+    print("\n--- Completed Projects ---")
+    for p in completed:
+        print(p)
+
+
+
+
 
 def filter_projects_by_date():
     pass
