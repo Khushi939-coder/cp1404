@@ -42,10 +42,17 @@ def load_projects(filename):
 
     return projects
 
+def save_projects(projects, filename="projects.txt"):
+    try:
+        with open(filename, "w") as file:
+            file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
 
-
-def save_projects():
-    pass
+            for p in projects:
+                line = f"{p.name}\t{p.date}\t{p.priority}\t{p.cost}\t{p.completion_percentage}\n"
+                file.write(line)
+        print("Project saved.")
+    except Exception as e:
+        print(f"Error saving project: {e}")
 
 def display_projects():
     pass
