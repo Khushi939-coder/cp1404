@@ -1,14 +1,18 @@
+from project import Project
+
 MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n- (U)pdate project\n- (Q)uit"
 
 print("Welcome to Pythonic Project Management")
 
 def main():
+    projects = load_projects("projects.txt")
     user_input = ""
     while user_input != "Q":
         print(MENU)
         user_input = input(">>> ").upper()
         if user_input == "L":
-            load_projects()
+            filename = input("Enter filename: ")
+            load_projects(filename)
         elif user_input == "S":
             save_projects()
         elif user_input == "D":
@@ -23,8 +27,22 @@ def main():
             print("Invalid input. Try again.")
 
 
-def load_projects():
-    pass
+def load_projects(filename):
+    projects = []
+    try:
+        with open(filename, "r") as file:
+            next(file)
+
+            for line in file:
+                data = line.strip().split("\t")
+                new_project = Project(data[0], (data[1]), int(data[2]), float(data[3]), int(data[4]))
+                projects.append(new_project)
+    except FileNotFoundError:
+        print("File not found.")
+
+    return projects
+
+
 
 def save_projects():
     pass
