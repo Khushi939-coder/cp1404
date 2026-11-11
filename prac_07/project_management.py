@@ -16,15 +16,15 @@ def main():
             filename = input("Enter filename: ")
             load_projects(filename)
         elif user_input == "S":
-            save_projects()
+            save_projects(projects)
         elif user_input == "D":
-            display_projects()
+            display_projects(projects)
         elif user_input == "F":
-            filter_projects_by_date()
+            filter_projects_by_date(projects)
         elif user_input == "A":
-            add_new_project()
+            add_new_project(projects)
         elif user_input == "U":
-            update_project()
+            update_project(projects)
         else:
             print("Invalid input. Try again.")
 
@@ -121,8 +121,32 @@ def add_new_project(projects):
     save_projects(projects)
     print(f"Project {name} added and saved.")
 
-def update_project():
-    pass
+def update_project(projects):
+    print("Updating project.")
+    for i, p in enumerate(projects):
+        print(f"{i}: {p.name}")
+
+    try:
+        choice = int(input("Enter the number of the project to update: "))
+        selected_project = projects[choice]
+
+        print(f"Updating: {selected_project.name}")
+
+        new_priority = input("Enter new priority (1-5) [Leave blank to keep current]: ")
+        new_completion_percentage = input("Enter new completion percentage (0-100) [Leave blank to keep current]: ")
+
+        if new_priority.strip():
+            selected_project.priority = int(new_priority)
+
+        if new_completion_percentage.strip():
+            selected_project.completion_percentage = int(new_completion_percentage)
+
+        save_projects(projects)
+        print(f"Project {selected_project.name} updated.")
+
+    except (ValueError, IndexError):
+        print("Invalid input or selection. Update cancelled.")
+
 
 if __name__ == "__main__":
     main()
