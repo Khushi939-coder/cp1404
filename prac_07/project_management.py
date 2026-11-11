@@ -1,4 +1,6 @@
 from project import Project
+from datetime import datetime
+from operator import itemgetter
 
 MENU = "- (L)oad projects\n- (S)ave projects\n- (D)isplay projects\n- (F)ilter projects by date\n- (A)dd new project\n- (U)pdate project\n- (Q)uit"
 
@@ -79,11 +81,34 @@ def display_projects(projects):
         print(p)
 
 
+def filter_projects_by_date(projects):
+    date_str = input("Enter a start date (DD/MM/YYYY): ")
+    try:
+        cutoff_date = datetime.strptime(date_str, "%d/%m/%Y")
+
+        filtered_projects = []
+        for p in projects:
+            project_date = datetime.strptime(p.date, "%d/%m/%Y")
+            if project_date > cutoff_date:
+                filtered_projects.append(p)
+
+        sort_helper = []
+        for p in filtered_projects:
+            sort_helper.append((datetime.strftime(p.date, "%d/%m/%Y"), p))
+
+        sort_helper.sort(key=itemgetter(0))
+
+        final_list = []
+        for item in sort_helper:
+            final_list.append(item[1])
+
+        return final_list
+    except ValueError:
+        print("Invalid date format. Please use DD/MM/YYYY.")
+        return []
 
 
 
-def filter_projects_by_date():
-    pass
 
 def add_new_project():
     pass
